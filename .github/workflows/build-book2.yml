@@ -27,7 +27,7 @@ jobs:
           python3 samples/absorption/generate_assets.py
           python3 book2/generate_assets.py
 
-      - name: Build subsequent chapters
+      - name: Build individual chapters
         run: |
           mkdir -p book2/output
           cd book2
@@ -41,7 +41,7 @@ jobs:
 
       - name: Build combined book from Absorption onward
         run: |
-          pandoc             samples/absorption/chapter_absorption.md             book2/chapters/02_No_Supply_No_Demand.md             book2/chapters/03_Spring_Shakeout_Test_Breakdown.md             book2/chapters/04_SOS_Breakout_Retest_LPS.md             book2/chapters/05_Markup_Buying_Climax.md             book2/chapters/06_Decision_Process.md             -o book2/output/Wyckoff_VSA_Tu_Absorption.epub             --toc --toc-depth=3             --css=book2/kindle.css             --metadata title="Wyckoff VSA – Từ Absorption đến quy trình ra quyết định"             --metadata lang=vi-VN             --resource-path="samples/absorption:book2"
+          pandoc             samples/absorption/chapter_absorption.md             book2/chapters/*.md             -o book2/output/Wyckoff_VSA_Tu_Absorption.epub             --toc --toc-depth=3             --css=book2/kindle.css             --metadata title="Wyckoff VSA – Từ Absorption đến các bài học nâng cao"             --metadata lang=vi-VN             --resource-path="samples/absorption:book2"
           ebook-convert             book2/output/Wyckoff_VSA_Tu_Absorption.epub             book2/output/Wyckoff_VSA_Tu_Absorption.azw3             --output-profile kindle_pw3
           ebook-meta book2/output/Wyckoff_VSA_Tu_Absorption.azw3
           unzip -t book2/output/Wyckoff_VSA_Tu_Absorption.epub
