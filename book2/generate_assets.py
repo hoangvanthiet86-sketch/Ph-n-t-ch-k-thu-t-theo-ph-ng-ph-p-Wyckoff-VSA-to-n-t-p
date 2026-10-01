@@ -83,3 +83,29 @@ chart(nd,"No Demand sau Weakness","Nhịp hồi volume thấp không lấy lại
       "ch02_no_demand_overview.png",resistance=17.6,labels={7:"ND?",8:"XÁC NHẬN"})
 chart(nd,"Phóng to No Demand candidate","Effort mua thấp, Result tăng nhỏ; bar giảm sau đó xác nhận.",
       "ch02_no_demand_zoom.png",resistance=17.6,labels={6:"1",7:"ND?",8:"X"},xlim=(5.2,9.5))
+
+
+# --- Chapter 03: Spring / Shakeout / Test ---
+spring=[
+(14.8,15.0,14.5,14.65,150),(14.65,14.9,14.4,14.55,145),(14.55,14.8,14.35,14.6,138),
+(14.6,14.85,14.4,14.72,132),(14.72,14.95,14.5,14.58,128),(14.58,14.7,14.1,14.25,190),
+(14.25,14.72,14.05,14.62,225),(14.62,14.78,14.36,14.48,105),(14.48,14.66,14.38,14.57,72),
+(14.57,14.98,14.52,14.9,165),(14.9,15.2,14.85,15.12,205)
+]
+chart(spring,"Spring candidate và Test","Xuyên hỗ trợ, quay lại Range; Test sau đó có volume thấp.",
+      "ch03_spring_overview.png",support=14.4,labels={5:"XUYÊN",6:"QUAY LẠI",8:"TEST",9:"DEMAND"})
+chart(spring,"Phóng to Spring → Test","Rejection giá thấp rồi Test với Effort bán thấp.",
+      "ch03_spring_zoom.png",support=14.4,labels={5:"1",6:"2",8:"TEST",9:"X"},xlim=(4.3,10.1))
+
+# --- Chapter 04: SOS / Retest / LPS ---
+sos=[
+(16.0,16.2,15.8,16.1,125),(16.1,16.35,16.0,16.28,145),(16.28,16.5,16.2,16.42,160),
+(16.42,16.65,16.35,16.55,155),(16.55,16.7,16.4,16.48,135),(16.48,16.72,16.42,16.66,150),
+(16.66,17.05,16.62,16.98,245),(16.98,17.22,16.9,17.15,260),
+(17.15,17.2,16.92,17.02,118),(17.02,17.08,16.88,16.98,82),(16.98,17.08,16.91,17.03,70),
+(17.03,17.38,17.0,17.32,205),(17.32,17.62,17.25,17.56,240)
+]
+chart(sos,"SOS → Retest → LPS","Breakout giữ trên cản, pullback volume thấp, Demand quay lại.",
+      "ch04_sos_lps_overview.png",resistance=16.7,labels={6:"SOS",9:"LPS?",11:"DEMAND"})
+chart(sos,"Phóng to breakout và retest","Acceptance phía trên cản; retest volume giảm cho điểm vào đẹp hơn.",
+      "ch04_sos_lps_zoom.png",resistance=16.7,labels={6:"SOS",8:"1",9:"LPS?",10:"2",11:"X"},xlim=(5.0,12.5))
