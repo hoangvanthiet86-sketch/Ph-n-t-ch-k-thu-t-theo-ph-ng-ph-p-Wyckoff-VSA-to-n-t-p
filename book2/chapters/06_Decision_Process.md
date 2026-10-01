@@ -50,15 +50,15 @@ Không để FOMO, sợ hãi, lòng tham hoặc hy vọng thay thế quy trình 
 
 ## 10. Sơ đồ quyết định tổng quan
 
-![](../assets/ch06_decision_overview.png)
+![](assets/ch06_decision_overview.png)
 
 ## 11. Phóng to nhánh breakout / retest
 
-![](../assets/ch06_decision_breakout.png)
+![](assets/ch06_decision_breakout.png)
 
 ## 12. Phóng to nhánh Spring / Breakdown
 
-![](../assets/ch06_decision_spring.png)
+![](assets/ch06_decision_spring.png)
 
 ## 13. Mười nguyên tắc khóa học đã chốt
 
