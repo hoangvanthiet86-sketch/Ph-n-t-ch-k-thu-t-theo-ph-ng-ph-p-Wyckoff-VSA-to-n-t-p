@@ -84,9 +84,6 @@ def chart(data,title,subtitle,out,support=None,resistance=None,labels=None,xlim=
     if legend:
         at.text(.5,.04,"NẾN TĂNG = THÂN TRẮNG RỖNG    •    NẾN GIẢM = THÂN ĐEN ĐẶC",
                 ha="center",va="bottom",fontsize=6.8,fontweight="bold")
-
-    fig.text(.5,.012,"Biểu đồ mô phỏng sư phạm — tối ưu cho Kindle thế hệ 11",
-             ha="center",fontsize=6.2)
     fig.subplots_adjust(top=.985,bottom=.055,left=.12,right=.985,hspace=.20)
     fig.savefig(OUT/out,bbox_inches="tight",dpi=300)
     plt.close(fig)
