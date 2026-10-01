@@ -1,0 +1,77 @@
+name: Build Kindle ebook
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "book/book.md"
+      - "book/generate_assets.py"
+      - "book/kindle.css"
+      - ".github/workflows/build-ebook.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc calibre python3-matplotlib unzip
+
+      - name: Generate black-white teaching charts
+        run: python3 book/generate_assets.py
+
+      - name: Build EPUB
+        run: |
+          mkdir -p dist
+          cd book
+          pandoc book.md             -o ../dist/Wyckoff_VSA_Kindle3.epub             --toc --toc-depth=3             --css=kindle.css             --epub-cover-image=assets/cover.png             --metadata lang=vi-VN
+
+      - name: Build AZW3 for Kindle 3
+        run: |
+          ebook-convert dist/Wyckoff_VSA_Kindle3.epub dist/Wyckoff_VSA_Kindle3.azw3             --output-profile kindle
+
+      - name: Validate outputs
+        run: |
+          unzip -t dist/Wyckoff_VSA_Kindle3.epub
+          ebook-meta dist/Wyckoff_VSA_Kindle3.azw3
+          {
+            echo "# BUILD REPORT"
+            echo
+            echo "- Manuscript: book/book.md"
+            echo "- EPUB: dist/Wyckoff_VSA_Kindle3.epub"
+            echo "- AZW3: dist/Wyckoff_VSA_Kindle3.azw3"
+            echo "- Charts: $(find book/assets -type f -name '*.png' | wc -l)"
+            echo "- Generated: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            echo "- Target: Kindle 3 / Kindle Keyboard"
+            echo "- EPUB ZIP validation: PASS"
+            echo "- AZW3 metadata read: PASS"
+          } > dist/BUILD_REPORT.md
+
+      - name: Commit generated book files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book/assets dist
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+          else
+            git commit -m "Build Kindle EPUB and AZW3 [skip ci]"
+            git push
+          fi
+
+      - name: Upload downloadable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Wyckoff-VSA-Kindle3
+          path: |
+            dist/Wyckoff_VSA_Kindle3.epub
+            dist/Wyckoff_VSA_Kindle3.azw3
+            dist/BUILD_REPORT.md
