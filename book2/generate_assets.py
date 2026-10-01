@@ -181,3 +181,69 @@ save_flow("Nhánh Spring / Breakdown",[
 ("Test","Effort bán giảm?"),
 ("Ở dưới hỗ trợ?","Acceptance thấp")
 ],"ch06_decision_spring.png")
+
+
+# --- Chapter 07: Secondary Test A/B ---
+sta=[
+(15.6,15.8,15.1,15.2,240),(15.2,15.5,14.7,14.95,310),(14.95,15.25,14.78,15.18,285),
+(15.18,15.75,15.1,15.65,250),(15.65,16.0,15.55,15.9,205),(15.9,16.1,15.75,15.82,165),
+(15.82,15.9,15.42,15.55,145),(15.55,15.7,15.35,15.48,118),(15.48,15.95,15.44,15.9,220),
+(15.9,16.18,15.84,16.12,245)
+]
+chart(sta,"Secondary Test – tình huống A","SC → AR → ST với Supply nhẹ hơn; Demand xác nhận sau ST.",
+      "ch07_st_A_overview.png",support=14.8,labels={1:"SC",4:"AR",7:"ST",8:"XÁC NHẬN"})
+chart(sta,"Phóng to SC → AR → ST","ST là vùng kiểm tra; nến tăng mạnh phía sau là xác nhận.",
+      "ch07_st_A_zoom.png",support=14.8,labels={1:"SC",4:"AR",6:"1",7:"ST",8:"X"},xlim=(0.4,9.3))
+
+stb=[
+(15.4,15.55,15.0,15.1,205),(15.1,15.3,14.75,14.88,235),(14.88,15.1,14.72,14.98,190),
+(14.98,15.35,14.92,15.28,170),(15.28,15.5,15.18,15.42,150),(15.42,15.48,15.1,15.18,158),
+(15.18,15.3,14.92,15.0,165),(15.0,15.18,14.82,14.9,172),(14.9,14.98,14.55,14.62,240)
+]
+chart(stb,"Secondary Test – tình huống B","SC/AR yếu hơn; vùng kiểm tra không cho Demand xác nhận rõ.",
+      "ch07_st_B_overview.png",support=14.75,labels={1:"SC?",4:"AR?",7:"ST?",8:"WEAKNESS"})
+
+# --- Chapter 08: Accumulation Phase A-E ---
+acc=[
+(18.8,19.0,18.35,18.45,180),(18.45,18.7,17.9,18.05,230),(18.05,18.35,17.45,17.62,330),
+(17.62,18.2,17.5,18.12,300),(18.12,18.9,18.0,18.72,250),
+(18.72,18.85,18.2,18.35,160),(18.35,18.55,18.0,18.18,145),
+(18.18,18.55,18.05,18.42,138),(18.42,18.75,18.3,18.6,132),
+(18.6,18.68,17.95,18.15,115),(18.15,18.45,17.82,18.35,105),
+(18.35,18.48,17.55,18.28,155),(18.28,18.55,18.05,18.42,92),
+(18.42,19.15,18.38,19.05,235),(19.05,19.42,18.98,19.34,255),
+(19.34,19.38,19.02,19.12,112),(19.12,19.2,18.98,19.08,78),
+(19.08,19.65,19.05,19.55,220),(19.55,20.1,19.48,20.0,245)
+]
+chart(acc,"Accumulation Phase A → E","Từ chặn Markdown đến Markup; đọc bằng Price + Volume và xác nhận.",
+      "ch08_accum_A.png",labels={2:"SC",4:"AR",6:"ST"})
+chart(acc,"Phase B – xây nền","Trading Range phát triển; theo dõi Supply giảm và Effort/Result.",
+      "ch08_accum_B.png",labels={6:"ST",8:"B",10:"B"},xlim=(4.8,11.2))
+chart(acc,"Phase C – final test","Spring/Test không bắt buộc nhưng thường kiểm tra Supply ở vùng thấp.",
+      "ch08_accum_C.png",labels={11:"SPRING?",12:"TEST"},xlim=(9.8,13.4))
+chart(acc,"Phase D – SOS và LPS","Demand phá cấu trúc; pullback yếu giữ hỗ trợ.",
+      "ch08_accum_D.png",resistance=18.9,labels={13:"SOS",16:"LPS",17:"DEMAND"},xlim=(12.0,18.1))
+chart(acc,"Phase E – Markup","Giá rời Range và tiếp tục tăng với reaction yếu.",
+      "ch08_accum_E.png",support=18.9,labels={17:"E",18:"MARKUP"},xlim=(15.0,18.8))
+
+# --- Chapter 09: Distribution Phase A-E ---
+dist=[
+(20.0,20.4,19.92,20.35,180),(20.35,20.8,20.3,20.72,205),(20.72,21.25,20.68,21.18,340),
+(21.18,21.3,20.7,20.82,315),(20.82,21.05,20.45,20.55,245),
+(20.55,21.0,20.5,20.9,170),(20.9,21.18,20.78,21.05,165),
+(21.05,21.2,20.7,20.82,175),(20.82,21.02,20.55,20.68,185),
+(20.68,21.35,20.62,21.12,230),(21.12,21.42,20.95,21.0,250),
+(21.0,21.05,20.25,20.38,295),(20.38,20.52,19.95,20.08,275),
+(20.08,20.35,19.98,20.25,120),(20.25,20.3,20.0,20.12,95),
+(20.12,20.18,19.55,19.65,235),(19.65,19.78,19.15,19.28,255)
+]
+chart(dist,"Distribution Phase A","Markup bị chặn; PSY/BC/AR/ST chỉ được nâng độ tin cậy bằng phản ứng sau.",
+      "ch09_dist_A.png",labels={2:"BC?",4:"AR",6:"ST"})
+chart(dist,"Phase B – phân phối trong Range","Theo dõi Demand mất hiệu quả và phản ứng giảm mạnh dần.",
+      "ch09_dist_B.png",labels={5:"B",7:"B",8:"B"},xlim=(4.5,9.3))
+chart(dist,"Phase C – UT/UTAD candidate","Thử phía trên Range; cần thất bại và quay lại để xác nhận.",
+      "ch09_dist_C.png",resistance=21.2,labels={9:"UT?",10:"FAIL"},xlim=(8.1,11.1))
+chart(dist,"Phase D – SOW và LPSY","Supply phá hỗ trợ; rally yếu không lấy lại vùng cũ.",
+      "ch09_dist_D.png",support=20.5,labels={11:"SOW",13:"LPSY",15:"SUPPLY"},xlim=(10.2,15.7))
+chart(dist,"Phase E – Markdown","Giá rời Range theo hướng giảm; các nhịp hồi yếu.",
+      "ch09_dist_E.png",resistance=20.5,labels={15:"E",16:"MARKDOWN"},xlim=(13.0,16.8))
