@@ -109,3 +109,75 @@ chart(sos,"SOS → Retest → LPS","Breakout giữ trên cản, pullback volume 
       "ch04_sos_lps_overview.png",resistance=16.7,labels={6:"SOS",9:"LPS?",11:"DEMAND"})
 chart(sos,"Phóng to breakout và retest","Acceptance phía trên cản; retest volume giảm cho điểm vào đẹp hơn.",
       "ch04_sos_lps_zoom.png",resistance=16.7,labels={6:"SOS",8:"1",9:"LPS?",10:"2",11:"X"},xlim=(5.0,12.5))
+
+
+# --- Chapter 05: Markup pullback / Buying Climax ---
+mk=[
+(18.0,18.3,17.9,18.25,150),(18.25,18.6,18.2,18.55,175),(18.55,18.9,18.5,18.82,190),
+(18.82,19.1,18.75,19.02,205),(19.02,19.08,18.8,18.88,135),(18.88,18.93,18.72,18.80,98),
+(18.80,18.86,18.68,18.76,72),(18.76,19.12,18.73,19.08,180),(19.08,19.38,19.02,19.31,205),
+(19.31,19.68,19.25,19.62,225)
+]
+chart(mk,"Markup và pullback lành mạnh","Nhịp lùi hẹp, volume giảm; Demand quay lại sau đó.",
+      "ch05_markup_overview.png",support=18.7,labels={6:"PULLBACK",7:"DEMAND"})
+chart(mk,"Phóng to pullback","Effort bán giảm, hỗ trợ giữ, rồi Demand mở rộng Result.",
+      "ch05_markup_zoom.png",support=18.7,labels={4:"1",5:"2",6:"3",7:"X"},xlim=(3.5,8.5))
+
+bc=[
+(20.0,20.4,19.9,20.35,180),(20.35,20.8,20.3,20.72,210),(20.72,21.15,20.68,21.08,235),
+(21.08,21.6,21.0,21.52,260),(21.52,22.25,21.45,22.12,410),
+(22.12,22.32,21.86,22.00,390),(22.00,22.10,21.58,21.68,345),(21.68,21.84,21.30,21.42,300),
+(21.42,21.65,21.28,21.55,210)
+]
+chart(bc,"Buying Climax candidate","Effort tăng vọt cuối nhịp tăng; cần xem Result và phản ứng sau.",
+      "ch05_bc_overview.png",labels={4:"BC?",5:"PHẢN ỨNG"})
+chart(bc,"Phóng to Buying Climax candidate","Volume rất lớn nhưng giá bắt đầu khó tiến xa.",
+      "ch05_bc_zoom.png",labels={4:"BC?",5:"1",6:"2"},xlim=(3.2,7.8))
+
+# --- Chapter 06: decision-process diagrams ---
+def save_flow(title, rows, out):
+    fig,ax=plt.subplots(figsize=(4.12,5.50),dpi=300,facecolor="white")
+    ax.axis("off")
+    ax.set_xlim(0,1); ax.set_ylim(0,1)
+    y=.92
+    ax.text(.5,.965,title,ha="center",va="top",fontsize=11.5,fontweight="bold")
+    for idx,(label,desc) in enumerate(rows,1):
+        h=.095
+        rect=Rectangle((.08,y-h),.84,h,facecolor="white",edgecolor="black",linewidth=1.2)
+        ax.add_patch(rect)
+        ax.text(.12,y-h/2,f"{idx}. {label}",ha="left",va="center",fontsize=8,fontweight="bold")
+        ax.text(.88,y-h/2,desc,ha="right",va="center",fontsize=7.1)
+        if idx<len(rows):
+            ax.annotate("",xy=(.5,y-h-.028),xytext=(.5,y-h-.002),
+                        arrowprops=dict(arrowstyle="-|>",lw=1,color="black"))
+        y-=.112
+    fig.subplots_adjust(left=.02,right=.98,top=.99,bottom=.02)
+    fig.savefig(OUT/out,bbox_inches="tight",dpi=300)
+    plt.close(fig)
+
+save_flow("Quy trình đọc Wyckoff/VSA",[
+("Bối cảnh","Thị trường chung"),
+("Cổ phiếu","Xu hướng • cấu trúc"),
+("Pha Wyckoff","A/M/D/Md"),
+("Vị trí","Range • breakout • retest"),
+("Price + Volume","Spread • Close • Wick"),
+("Effort/Result","Nỗ lực vs kết quả"),
+("Supply/Demand","Bên nào mất hiệu quả?"),
+("Kịch bản","Xác nhận • vô hiệu")
+],"ch06_decision_overview.png")
+
+save_flow("Nhánh Breakout / Retest",[
+("Tiếp cận kháng cự","Đọc Supply"),
+("Breakout","Có Result?"),
+("Acceptance","Giữ trên vùng cản"),
+("Retest","Volume giảm?"),
+("Demand quay lại","Continuation")
+],"ch06_decision_breakout.png")
+
+save_flow("Nhánh Spring / Breakdown",[
+("Tiếp cận hỗ trợ","Đọc Demand"),
+("Xuyên hỗ trợ","Candidate"),
+("Quay lại Range?","Rejection"),
+("Test","Effort bán giảm?"),
+("Ở dưới hỗ trợ?","Acceptance thấp")
+],"ch06_decision_spring.png")
