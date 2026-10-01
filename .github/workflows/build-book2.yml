@@ -1,0 +1,48 @@
+name: Build Book2 Kindle chapters
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "book2/**"
+      - ".github/workflows/build-book2.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc calibre python3-matplotlib unzip
+      - name: Generate charts
+        run: python3 book2/generate_assets.py
+      - name: Build chapter 02
+        run: |
+          mkdir -p book2/output
+          cd book2
+          pandoc chapters/02_No_Supply_No_Demand.md             -o output/02_No_Supply_No_Demand.epub             --toc --toc-depth=3 --css=kindle.css             --metadata lang=vi-VN --resource-path=.
+          ebook-convert output/02_No_Supply_No_Demand.epub             output/02_No_Supply_No_Demand.azw3             --output-profile kindle_pw3
+          ebook-meta output/02_No_Supply_No_Demand.azw3
+          unzip -t output/02_No_Supply_No_Demand.epub
+      - name: Commit generated assets and outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book2/assets book2/output
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "Build Book2 Kindle chapters [skip ci]"
+            git push
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Book2-Kindle11-Chapters
+          path: |
+            book2/output/*.azw3
+            book2/output/*.epub
