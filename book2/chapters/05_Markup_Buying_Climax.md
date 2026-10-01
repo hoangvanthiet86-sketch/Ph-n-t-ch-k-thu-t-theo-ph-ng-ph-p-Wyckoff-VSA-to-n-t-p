@@ -27,11 +27,11 @@ Một nhịp điều chỉnh lành mạnh có thể có:
 
 ## 3. Biểu đồ tổng quan
 
-![](../assets/ch05_markup_overview.png)
+![](assets/ch05_markup_overview.png)
 
 ## 4. Phóng to pullback và Demand quay lại
 
-![](../assets/ch05_markup_zoom.png)
+![](assets/ch05_markup_zoom.png)
 
 Cách đọc:
 
@@ -55,11 +55,11 @@ Trong khóa học, vùng này có thể là Buying Climax candidate hoặc vùng
 
 ## 6. Biểu đồ Buying Climax candidate
 
-![](../assets/ch05_bc_overview.png)
+![](assets/ch05_bc_overview.png)
 
 ## 7. Phóng to phản ứng sau Buying Climax candidate
 
-![](../assets/ch05_bc_zoom.png)
+![](assets/ch05_bc_zoom.png)
 
 Nếu sau Effort cực lớn, giá không tiến xa hoặc bắt đầu suy yếu, giả thuyết Supply đối ứng tăng độ tin cậy. Nếu giá tiếp tục giữ Strength và Volume bình thường hóa, chưa thể chỉ dựa vào bar climax để kết luận Distribution.
 
