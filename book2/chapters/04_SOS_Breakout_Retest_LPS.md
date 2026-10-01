@@ -55,11 +55,11 @@ có thể là Bull Trap/Upthrust.
 
 ## 4. Biểu đồ tổng quan SOS → Retest → LPS
 
-![](../assets/ch04_sos_lps_overview.png)
+![](assets/ch04_sos_lps_overview.png)
 
 ## 5. Phóng to vùng breakout và retest
 
-![](../assets/ch04_sos_lps_zoom.png)
+![](assets/ch04_sos_lps_zoom.png)
 
 Điểm cần đọc:
 
