@@ -80,7 +80,7 @@ Vì vậy câu hỏi đầu tiên luôn là:
 
 ## 3. Biểu đồ tổng quan – No Supply trong pullback sau Strength
 
-![](../assets/ch02_no_supply_overview.png)
+![](assets/ch02_no_supply_overview.png)
 
 Điểm cần nhìn:
 
@@ -93,7 +93,7 @@ Ta chỉ gọi đó là **No Supply candidate** cho đến khi Demand quay lại
 
 ## 4. Phóng to – No Supply candidate và bar xác nhận
 
-![](../assets/ch02_no_supply_zoom.png)
+![](assets/ch02_no_supply_zoom.png)
 
 Ở phần phóng to, cần đọc theo trình tự:
 
@@ -108,7 +108,7 @@ Chính bar sau mới giúp xác nhận rằng lượng cung thấp ở bar trư�
 
 ## 5. Biểu đồ tổng quan – No Demand sau Weakness
 
-![](../assets/ch02_no_demand_overview.png)
+![](assets/ch02_no_demand_overview.png)
 
 Trong ví dụ đối ứng:
 
@@ -121,7 +121,7 @@ Trong ví dụ đối ứng:
 
 ## 6. Phóng to – No Demand và phản ứng sau đó
 
-![](../assets/ch02_no_demand_zoom.png)
+![](assets/ch02_no_demand_zoom.png)
 
 Nếu sau bar No Demand candidate, giá bị bán xuống và tạo Result giảm tốt hơn, giả thuyết “Demand yếu” được tăng độ tin cậy.
 
