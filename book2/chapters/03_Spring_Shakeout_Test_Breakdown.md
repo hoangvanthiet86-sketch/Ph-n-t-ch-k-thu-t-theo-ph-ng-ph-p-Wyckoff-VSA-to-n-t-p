@@ -66,11 +66,11 @@ thì xác suất breakdown thật cao hơn.
 
 ## 4. Biểu đồ tổng quan
 
-![](../assets/ch03_spring_overview.png)
+![](assets/ch03_spring_overview.png)
 
 ## 5. Phóng to cú xuyên hỗ trợ
 
-![](../assets/ch03_spring_zoom.png)
+![](assets/ch03_spring_zoom.png)
 
 Điểm cần đọc là **Acceptance vs Rejection**:
 
