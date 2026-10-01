@@ -21,14 +21,17 @@ jobs:
           sudo apt-get install -y pandoc calibre python3-matplotlib unzip
       - name: Generate charts
         run: python3 book2/generate_assets.py
-      - name: Build chapter 02
+      - name: Build chapters
         run: |
           mkdir -p book2/output
           cd book2
-          pandoc chapters/02_No_Supply_No_Demand.md             -o output/02_No_Supply_No_Demand.epub             --toc --toc-depth=3 --css=kindle.css             --metadata lang=vi-VN --resource-path=.
-          ebook-convert output/02_No_Supply_No_Demand.epub             output/02_No_Supply_No_Demand.azw3             --output-profile kindle_pw3
-          ebook-meta output/02_No_Supply_No_Demand.azw3
-          unzip -t output/02_No_Supply_No_Demand.epub
+          for src in chapters/*.md; do
+            base="$(basename "$src" .md)"
+            pandoc "$src"               -o "output/${base}.epub"               --toc --toc-depth=3 --css=kindle.css               --metadata lang=vi-VN --resource-path=.
+            ebook-convert "output/${base}.epub" "output/${base}.azw3"               --output-profile kindle_pw3
+            ebook-meta "output/${base}.azw3"
+            unzip -t "output/${base}.epub"
+          done
       - name: Commit generated assets and outputs
         run: |
           git config user.name "github-actions[bot]"
