@@ -1,0 +1,7 @@
+body { font-family: serif; line-height: 1.42; margin: 5%; }
+h1,h2,h3 { page-break-after: avoid; }
+h1 { font-size: 1.65em; } h2 { font-size: 1.30em; } h3 { font-size: 1.12em; }
+p { margin: 0.55em 0; }
+blockquote { border-left: 3px solid #888; padding-left: 0.8em; margin-left: 0; }
+img { display:block; margin:0.8em auto; max-width:100%; height:auto; }
+ul,ol { margin-top:0.35em; }
