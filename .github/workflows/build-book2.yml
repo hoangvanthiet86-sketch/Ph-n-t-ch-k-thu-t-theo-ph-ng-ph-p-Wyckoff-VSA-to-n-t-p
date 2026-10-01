@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "book2/**"
+      - "samples/absorption/**"
       - ".github/workflows/build-book2.yml"
 
 permissions:
@@ -15,34 +16,48 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Install tools
         run: |
           sudo apt-get update
           sudo apt-get install -y pandoc calibre python3-matplotlib unzip
+
       - name: Generate charts
-        run: python3 book2/generate_assets.py
-      - name: Build chapters
+        run: |
+          python3 samples/absorption/generate_assets.py
+          python3 book2/generate_assets.py
+
+      - name: Build subsequent chapters
         run: |
           mkdir -p book2/output
           cd book2
           for src in chapters/*.md; do
             base="$(basename "$src" .md)"
-            pandoc "$src"               -o "output/${base}.epub"               --toc --toc-depth=3 --css=kindle.css               --metadata lang=vi-VN --resource-path=.
+            pandoc "$src"               -o "output/${base}.epub"               --toc --toc-depth=3               --css=kindle.css               --metadata lang=vi-VN               --resource-path=.
             ebook-convert "output/${base}.epub" "output/${base}.azw3"               --output-profile kindle_pw3
             ebook-meta "output/${base}.azw3"
             unzip -t "output/${base}.epub"
           done
+
+      - name: Build combined book from Absorption onward
+        run: |
+          pandoc             samples/absorption/chapter_absorption.md             book2/chapters/02_No_Supply_No_Demand.md             book2/chapters/03_Spring_Shakeout_Test_Breakdown.md             book2/chapters/04_SOS_Breakout_Retest_LPS.md             book2/chapters/05_Markup_Buying_Climax.md             book2/chapters/06_Decision_Process.md             -o book2/output/Wyckoff_VSA_Tu_Absorption.epub             --toc --toc-depth=3             --css=book2/kindle.css             --metadata title="Wyckoff VSA – Từ Absorption đến quy trình ra quyết định"             --metadata lang=vi-VN             --resource-path="samples/absorption:book2"
+          ebook-convert             book2/output/Wyckoff_VSA_Tu_Absorption.epub             book2/output/Wyckoff_VSA_Tu_Absorption.azw3             --output-profile kindle_pw3
+          ebook-meta book2/output/Wyckoff_VSA_Tu_Absorption.azw3
+          unzip -t book2/output/Wyckoff_VSA_Tu_Absorption.epub
+
       - name: Commit generated assets and outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add book2/assets book2/output
+          git add samples/absorption/assets book2/assets book2/output
           if git diff --cached --quiet; then
             echo "No generated changes"
           else
             git commit -m "Build Book2 Kindle chapters [skip ci]"
             git push
           fi
+
       - uses: actions/upload-artifact@v4
         with:
           name: Book2-Kindle11-Chapters
