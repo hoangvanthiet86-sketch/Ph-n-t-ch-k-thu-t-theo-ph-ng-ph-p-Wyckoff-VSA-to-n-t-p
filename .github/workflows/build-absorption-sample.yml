@@ -26,7 +26,7 @@ jobs:
           mkdir -p samples/absorption/output
           cd samples/absorption
           pandoc chapter_absorption.md -o output/Absorption_Hap_thu_cung_cau.epub --toc --toc-depth=3 --css=kindle.css --metadata lang=vi-VN --resource-path=.
-          ebook-convert output/Absorption_Hap_thu_cung_cau.epub output/Absorption_Hap_thu_cung_cau.azw3 --output-profile kindle
+          ebook-convert output/Absorption_Hap_thu_cung_cau.epub output/Absorption_Hap_thu_cung_cau.azw3 --output-profile kindle_pw3
           ebook-meta output/Absorption_Hap_thu_cung_cau.azw3
           unzip -t output/Absorption_Hap_thu_cung_cau.epub
       - name: Commit built sample
