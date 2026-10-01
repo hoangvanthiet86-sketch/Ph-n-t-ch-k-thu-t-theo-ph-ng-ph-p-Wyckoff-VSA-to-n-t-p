@@ -1,0 +1,10 @@
+body { font-family: serif; line-height: 1.35; margin: 0 4%; }
+h1 { font-size: 1.45em; margin-top: 1.2em; page-break-before: always; }
+h2 { font-size: 1.15em; margin-top: 1em; }
+h3 { font-size: 1.05em; }
+p { margin: .55em 0; text-align: justify; }
+blockquote { margin: .8em 1em; padding-left: .7em; border-left: 2px solid #555; }
+img { max-width: 100%; height: auto; display: block; margin: .7em auto; }
+table { border-collapse: collapse; width: 100%; font-size: .9em; }
+th, td { border: 1px solid #444; padding: .25em; vertical-align: top; }
+ul, ol { margin-top: .35em; margin-bottom: .6em; }
